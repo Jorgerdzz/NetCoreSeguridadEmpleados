@@ -2,6 +2,7 @@
 using NetCoreSeguridadEmpleados.Filters;
 using NetCoreSeguridadEmpleados.Models;
 using NetCoreSeguridadEmpleados.Repositories;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace NetCoreSeguridadEmpleados.Controllers
@@ -31,6 +32,15 @@ namespace NetCoreSeguridadEmpleados.Controllers
         public IActionResult PerfilEmpleado()
         {
             return View();
+        }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Compis()
+        {
+            string dato = HttpContext.User.FindFirstValue("Departamento");
+            int departamento = int.Parse(dato);
+            List<Empleado> empleados = await this.repo.GetEmpleadosPorDepartamentoAsync(departamento);
+            return View(empleados);
         }
     }
 }

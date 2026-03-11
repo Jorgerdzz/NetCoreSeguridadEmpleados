@@ -71,5 +71,10 @@ namespace NetCoreSeguridadEmpleados.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult ErrorAcceso()
+        {
+            return View();
+        }
+
     }
 }
