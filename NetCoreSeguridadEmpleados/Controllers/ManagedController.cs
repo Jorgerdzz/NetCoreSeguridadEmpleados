@@ -68,7 +68,16 @@ namespace NetCoreSeguridadEmpleados.Controllers
                 string action =
                     TempData["action"].ToString();
 
-                return RedirectToAction(action, controller);
+                if (TempData["idEmpleado"] != null)
+                {
+                    string id = TempData["idEmpleado"].ToString();
+                    return RedirectToAction(action, controller, new {id = id});
+                }
+                else
+                {
+                    return RedirectToAction(action, controller);
+                }
+
             }
             else
             {

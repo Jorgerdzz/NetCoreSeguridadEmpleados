@@ -25,6 +25,9 @@ namespace NetCoreSeguridadEmpleados.Filters
             string action =
                 context.RouteData.Values["action"].ToString();
 
+            var id =
+                context.RouteData.Values["idEmpleado"];
+
             ITempDataProvider provider =
                 context.HttpContext.RequestServices.GetService<ITempDataProvider>();
 
@@ -34,6 +37,16 @@ namespace NetCoreSeguridadEmpleados.Filters
             //ALMACENAMOS LA INFROMACION
             tempData["controller"] = controller;
             tempData["action"] = action;
+
+            if(id != null)
+            {
+                tempData["idEmpleado"] = id.ToString();
+            }
+            else
+            {
+                //ELIMINAMOS LA CLAVE PARA QUE NO SE QUEDE ENTRE PETICIONES
+                tempData.Remove("idEmpleado");
+            }
 
             provider.SaveTempData(context.HttpContext, tempData);
 

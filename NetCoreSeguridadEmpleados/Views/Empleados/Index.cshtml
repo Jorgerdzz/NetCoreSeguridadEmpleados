@@ -50,6 +50,8 @@
             </td>
             <td>
                 <a asp-controller="Empleados" asp-action="Details" asp-route-idEmpleado="@item.IdEmpleado" class="btn btn-primary">Details</a>
+                <a asp-controller="Empleados" asp-action="Delete" asp-route-idEmpleado="@item.IdEmpleado" class="btn btn-danger">Delete</a>
+
             </td>
         </tr>
 }

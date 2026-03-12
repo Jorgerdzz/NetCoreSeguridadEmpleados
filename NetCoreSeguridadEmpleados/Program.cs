@@ -36,6 +36,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("SOLOJEFES", policy => policy.RequireRole("PRESIDENTE", "DIRECTOR", "ANALISTA"));
     options.AddPolicy("ADMIN", policy => policy.RequireClaim("Admin"));
     options.AddPolicy("SoloRicos", policy => policy.Requirements.Add(new OverSalarioRequirement()));
+    options.AddPolicy("SOJOJEFAZOS", policy => policy.Requirements.Add(new DeleteJefazoRequirement()));
 });
 
 string connectionString = builder.Configuration.GetConnectionString("SqlHospital");
