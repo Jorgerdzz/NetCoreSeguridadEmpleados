@@ -34,7 +34,7 @@ namespace NetCoreSeguridadEmpleados.Controllers
             return View();
         }
 
-        [AuthorizeEmpleados]
+        [AuthorizeEmpleados(Policy = "SOLOJEFES")]
         public async Task<IActionResult> Compis()
         {
             string dato = HttpContext.User.FindFirstValue("Departamento");
@@ -54,6 +54,18 @@ namespace NetCoreSeguridadEmpleados.Controllers
 
             List<Empleado> empleados = await this.repo.GetEmpleadosPorDepartamentoAsync(departamento);
             return View(empleados);
+        }
+
+        [AuthorizeEmpleados(Policy = "ADMIN")]
+        public IActionResult AdminEmpleados()
+        {
+            return View();
+        }
+
+        [AuthorizeEmpleados(Policy = "SoloRicos")]
+        public IActionResult ZonaNoble()
+        {
+            return View();
         }
     }
 }

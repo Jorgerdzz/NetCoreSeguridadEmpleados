@@ -41,17 +41,6 @@ namespace NetCoreSeguridadEmpleados.Filters
             {
                 context.Result = GetRoute("Managed", "LogIn");
             }
-            else
-            {
-                //COMPROBAMOS ROLES
-                //TENEMOS EN CUENTA MAYUSCULAS/MINUSCULAS
-                if (user.IsInRole("PRESIDENTE") == false
-                    && user.IsInRole("DIRECTOR") == false
-                    && user.IsInRole("ANALISTA") == false)
-                {
-                    context.Result = GetRoute("Managed", "ErrorAcceso");
-                }
-            }
         }
 
         //EN ALGUN MOMENTO TENDREMOS MAS REDIRECCIONES QUE SOLO AL LOGIN
