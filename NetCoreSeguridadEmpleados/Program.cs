@@ -18,7 +18,7 @@ builder.Services.AddAuthentication(
     }).AddCookie();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
+builder.Services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
 
 builder.Services.AddTransient<HospitalRepository>();
 
